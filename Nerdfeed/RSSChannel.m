@@ -122,7 +122,7 @@
     NSDictionary *feed = [d objectForKey:@"feed"];
     
     // The feed has a title property, make this the title of our channel.
-    [self setTitle:[feed objectForKey:@"title"]];
+    [self setTitle:[[feed objectForKey:@"title"] objectForKey:@"label"]];
     
     // The feed also has an array of entries, for each one,
     // make a new RSSItem

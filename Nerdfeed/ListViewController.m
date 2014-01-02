@@ -12,6 +12,7 @@
 #import "WebViewController.h"
 #import "ChannelViewController.h"
 #import "BNRFeedStore.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ListViewController ()
 - (void)transferBarButtonToViewController:(UIViewController *)vc;
@@ -46,6 +47,8 @@
     self = [super initWithStyle:style];
 
     if (self) {
+        noS = 10;
+        
         UIBarButtonItem *bbi = 
             [[UIBarButtonItem alloc] initWithTitle:@"Info" 
                                              style:UIBarButtonItemStyleBordered 
@@ -72,8 +75,111 @@
 - (void)changeType:(id)sender
 {
     rssType = [sender selectedSegmentIndex];
+    
+    // Add number of songs to fetch to Apple segment
+    if (rssType == ListViewControllerRSSTypeApple) {
+        UIBarButtonItem *nosBtn = [[UIBarButtonItem alloc] initWithTitle:@"NoS"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(chooseNoS)];
+        [[self navigationItem] setLeftBarButtonItem:nosBtn];
+    } else {
+        [[self navigationItem] setLeftBarButtonItem:nil];
+    }
+    
     [self fetchEntries];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self fetchEntries];
+}
+
+- (void)chooseNoS
+{
+    NSLog(@"here here here");
+    
+    
+    CGPoint center = CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
+                                 [[UIScreen mainScreen] bounds].size.height / 2);
+
+    UIViewController *tmpView = [[UIViewController alloc] init];
+    
+    [[tmpView view] setFrame:CGRectMake(0, 0, center.x *2, center.y *2)];
+    
+    UITextField *nosTextField = [[UITextField alloc] init];
+    UIButton *okBtn = [[UIButton alloc] init];
+    UILabel *okLabel = [[UILabel alloc] init];
+
+    
+    [nosTextField setFrame:CGRectMake(center.x/2, center.y/2, center.x*3/2, 40)];
+    [nosTextField setCenter:center];
+    [nosTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    [nosTextField setTextAlignment:NSTextAlignmentCenter];
+    [nosTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    [nosTextField setDelegate:self];
+    noSTF = nosTextField;
+    
+    [okBtn addTarget:self action:@selector(setNoS) forControlEvents:UIControlEventTouchDown];
+    [okBtn setFrame:CGRectMake(center.x/2, center.y/2, center.x/2, 40)];
+    [okBtn setCenter:CGPointMake(center.x, center.y + 50)];
+    [okBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [okBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    [[okBtn layer] setCornerRadius:10];
+    [[okBtn layer] setBorderWidth:1];
+    [[okBtn layer] setBorderColor:[[UIColor redColor] CGColor]];
+    [okBtn setClipsToBounds:YES];
+    
+    [okLabel setFrame:CGRectMake(center.x/2, center.y/2, center.x*2, 40)];
+    [okLabel setCenter:CGPointMake(center.x, center.y - 50)];
+    [okLabel setTextColor:[UIColor blueColor]];
+    [okLabel setTextAlignment:NSTextAlignmentCenter];
+    noSLabel = okLabel;
+
+
+    
+    [okBtn setTitle:@"OK" forState:UIControlStateNormal];
+    
+//    [nosTextField setBackgroundColor:[UIColor greenColor]];
+//    [okBtn setBackgroundColor:[UIColor blueColor]];
+    
+    
+    [[tmpView view] addSubview:nosTextField];
+    [[tmpView view] addSubview:okBtn];
+    [[tmpView view] addSubview:okLabel];
+//    [[tmpView view] setBackgroundColor:[UIColor redColor]];
+    
+    
+    [[self navigationController] pushViewController:tmpView animated:YES];
+    
+}
+
+- (void)setNoS
+{
+    NSLog(@"%d", noS);
+    if ([[noSTF text] length]) {
+        if ([[noSTF text] intValue]) {
+            noS = [[noSTF text] intValue];
+            [noSLabel setText:[NSString stringWithFormat:@"%d songs will be fetched.", noS]];
+            NSLog(@"%d", noS);
+            return;
+        }
+    }
+    
+    noS = 10;
+    [noSLabel setText:[NSString stringWithFormat:@"%d songs will be fetched.", noS]];
+}
+
+- (BOOL)textFieldShouldReturn:(id)sender
+{
+    [sender resignFirstResponder];
+    [self setNoS];
+    
+    return YES;
+}
+
+
 
 - (void)showInfo:(id)sender
 {
@@ -212,7 +318,7 @@
     if (rssType == ListViewControllerRSSTypeBNR) {
         [[BNRFeedStore sharedStore] fetchRSSFeedWithCompletion:completionBlock];
     } else if (rssType == ListViewControllerRSSTypeApple) {
-        [[BNRFeedStore sharedStore] fetchTopSongs:100
+        [[BNRFeedStore sharedStore] fetchTopSongs:noS
                                    withCompletion:completionBlock];
     }
     

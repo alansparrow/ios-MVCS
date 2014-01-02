@@ -20,6 +20,7 @@
 		BED69FEF141E81EB0042D98C /* ChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED69FEE141E81EB0042D98C /* ChannelViewController.m */; };
 		D89529B41875264700702A15 /* BNRFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D89529B31875264700702A15 /* BNRFeedStore.m */; };
 		D89529B718753FF600702A15 /* BNRConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D89529B618753FF600702A15 /* BNRConnection.m */; };
+		D89529BA18757AB000702A15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89529B918757AB000702A15 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		D89529B518753FF600702A15 /* BNRConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRConnection.h; sourceTree = "<group>"; };
 		D89529B618753FF600702A15 /* BNRConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRConnection.m; sourceTree = "<group>"; };
 		D89529B81875595500702A15 /* JSONSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerializable.h; sourceTree = "<group>"; };
+		D89529B918757AB000702A15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D89529BA18757AB000702A15 /* QuartzCore.framework in Frameworks */,
 				BED69FC7141E79F00042D98C /* UIKit.framework in Frameworks */,
 				BED69FC9141E79F00042D98C /* Foundation.framework in Frameworks */,
 				BED69FCB141E79F00042D98C /* CoreGraphics.framework in Frameworks */,
@@ -99,6 +102,7 @@
 		BED69FC5141E79F00042D98C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D89529B918757AB000702A15 /* QuartzCore.framework */,
 				BED69FC6141E79F00042D98C /* UIKit.framework */,
 				BED69FC8141E79F00042D98C /* Foundation.framework */,
 				BED69FCA141E79F00042D98C /* CoreGraphics.framework */,

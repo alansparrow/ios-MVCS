@@ -16,10 +16,13 @@ typedef enum {
 @class RSSChannel;
 @class WebViewController;
 
-@interface ListViewController : UITableViewController
+@interface ListViewController : UITableViewController <UITextFieldDelegate>
 {
     RSSChannel *channel;
     ListViewControllerRSSType rssType;
+    UITextField *noSTF;
+    UILabel *noSLabel;
+    NSInteger noS;
 }
 @property (nonatomic, strong) WebViewController *webViewController;
 - (void)fetchEntries;
