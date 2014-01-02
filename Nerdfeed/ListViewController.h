@@ -8,12 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    ListViewControllerRSSTypeBNR,
+    ListViewControllerRSSTypeApple
+} ListViewControllerRSSType;
+
 @class RSSChannel;
 @class WebViewController;
 
 @interface ListViewController : UITableViewController
 {
     RSSChannel *channel;
+    ListViewControllerRSSType rssType;
 }
 @property (nonatomic, strong) WebViewController *webViewController;
 - (void)fetchEntries;

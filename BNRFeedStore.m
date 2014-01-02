@@ -46,4 +46,25 @@
     [connection start];
 }
 
+- (void)fetchTopSongs:(int)count withCompletion:(void (^)(RSSChannel *, NSError *))block
+{
+    // Prepare a request URL, including the argument from the controller
+    NSString *requestString = [NSString stringWithFormat:
+                               @"http://itunes.apple.com/us/rss/topsongs/limit=%d/json",
+                               count];
+    
+    NSURL *url = [NSURL URLWithString:requestString];
+    
+    // Set up the connection as normal
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    RSSChannel *channel = [[RSSChannel alloc] init];
+    
+    BNRConnection *connection = [[BNRConnection alloc] initWithRequest:req];
+    [connection setCompletionBlock:block];
+    [connection setJsonRootObject:channel];
+    
+    [connection start];
+                               
+}
+
 @end

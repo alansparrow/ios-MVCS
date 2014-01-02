@@ -47,6 +47,7 @@
 		D89529B31875264700702A15 /* BNRFeedStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRFeedStore.m; sourceTree = "<group>"; };
 		D89529B518753FF600702A15 /* BNRConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRConnection.h; sourceTree = "<group>"; };
 		D89529B618753FF600702A15 /* BNRConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRConnection.m; sourceTree = "<group>"; };
+		D89529B81875595500702A15 /* JSONSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerializable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,14 +73,15 @@
 				BED69FEE141E81EB0042D98C /* ChannelViewController.m */,
 				BED69FE0141E7C340042D98C /* RSSChannel.h */,
 				BED69FE1141E7C340042D98C /* RSSChannel.m */,
-				BED69FE6141E7E2F0042D98C /* WebViewController.h */,
-				BED69FE7141E7E2F0042D98C /* WebViewController.m */,
 				BED69FE3141E7D710042D98C /* RSSItem.h */,
 				BED69FE4141E7D710042D98C /* RSSItem.m */,
+				BED69FE6141E7E2F0042D98C /* WebViewController.h */,
+				BED69FE7141E7E2F0042D98C /* WebViewController.m */,
 				D89529B21875264700702A15 /* BNRFeedStore.h */,
 				D89529B31875264700702A15 /* BNRFeedStore.m */,
 				D89529B518753FF600702A15 /* BNRConnection.h */,
 				D89529B618753FF600702A15 /* BNRConnection.m */,
+				D89529B81875595500702A15 /* JSONSerializable.h */,
 				BED69FCC141E79F00042D98C /* Nerdfeed */,
 				BED69FC5141E79F00042D98C /* Frameworks */,
 				BED69FC3141E79F00042D98C /* Products */,
