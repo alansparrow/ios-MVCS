@@ -38,10 +38,9 @@ static NSMutableArray *sharedConnectionList = nil;
     // If this is the first connection started, create the array
     if (!sharedConnectionList) {
         sharedConnectionList = [[NSMutableArray alloc] init];
-        
-        // Add the connection to the array so it doesn't get destroyed
-        [sharedConnectionList addObject:self];
     }
+    // Add the connection to the array so it doesn't get destroyed
+    [sharedConnectionList addObject:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
